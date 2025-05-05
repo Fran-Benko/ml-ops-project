@@ -1,7 +1,13 @@
-proyect_1
+# ML Ops
 ==============================
 
-testing
+An app where you could simulate models lifecycle. The use case consist in train models for predict the flight cancelation.
+We would face unbalanced data set, missing data, and feature engineering challenges. In the model training we would use 
+k-fold for a robust trainning process.
+
+The project would contain a main python app where you will excecute the main accions like adding more data, train models, view metrics, etc. 
+And custom functions for data processing and model trainning.
+
 
 Project Organization
 ------------
