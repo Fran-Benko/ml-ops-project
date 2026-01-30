@@ -1,0 +1,53 @@
+{
+    "dataset_version": "WA_Fn-UseC_-HR-Employee-Attrition.csv",
+    "timestamp": "2026-01-20T20:07:38.643049",
+    "temporal_generation": true,
+    "temporal_validation": false,
+    "n_temporal_months": 3,
+    "drift_scenario": "baseline",
+    "classification_report": {
+        "0": {
+            "precision": 0.7796934865900383,
+            "recall": 0.6749585406301825,
+            "f1-score": 0.7235555555555555,
+            "support": 603.0
+        },
+        "1": {
+            "precision": 0.45555555555555555,
+            "recall": 0.5878136200716846,
+            "f1-score": 0.513302034428795,
+            "support": 279.0
+        },
+        "accuracy": 0.6473922902494331,
+        "macro avg": {
+            "precision": 0.617624521072797,
+            "recall": 0.6313860803509335,
+            "f1-score": 0.6184287949921752,
+            "support": 882.0
+        },
+        "weighted avg": {
+            "precision": 0.6771600594260694,
+            "recall": 0.6473922902494331,
+            "f1-score": 0.657046788668519,
+            "support": 882.0
+        }
+    },
+    "roc_auc": 0.6852862331116223,
+    "confusion_matrix": [
+        [
+            407,
+            196
+        ],
+        [
+            115,
+            164
+        ]
+    ],
+    "best_params": {
+        "classifier__max_depth": 10,
+        "classifier__min_samples_split": 5,
+        "classifier__n_estimators": 100
+    },
+    "validation_results": null,
+    "drift_summary": null
+}

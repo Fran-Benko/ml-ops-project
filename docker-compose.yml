@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  tracking_server:
+    build: 
+      context: .
+      dockerfile: services/tracking/Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlflow/mlruns
+    container_name: mlflow_server
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  orchestrator:
+    build:
+      context: .
+      dockerfile: services/orchestrator/Dockerfile
+    ports:
+      - "4200:4200"
+    environment:
+      - PREFECT_API_URL=http://localhost:4200/api
+      - MLFLOW_TRACKING_URI=http://tracking_server:5000
+    volumes:
+      - ./data:/app/data
+      - ./models:/app/models
+    container_name: prefect_orchestrator
+    depends_on:
+      - tracking_server
+
+  serving_api:
+    build:
+      context: .
+      dockerfile: services/serving/Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://tracking_server:5000
+    volumes:
+      - .:/app
+      - ./models:/app/models
+    container_name: fastapi_serving
+    depends_on:
+      - tracking_server
+
+  frontend:
+    build:
+      context: .
+      dockerfile: services/frontend/Dockerfile
+    ports:
+      - "8501:8501"
+    environment:
+      - SERVING_API_URL=http://serving_api:8000
+      - PREFECT_API_URL=http://orchestrator:4200/api
+    volumes:
+      - .:/app
+    container_name: streamlit_frontend
+    depends_on:
+      - serving_api
+      - orchestrator

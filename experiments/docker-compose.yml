@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  experiment_runner:
+    build:
+      context: ..
+      dockerfile: experiments/Dockerfile
+    container_name: mlops_experiment
+    volumes:
+      - ../data:/app/data:ro
+      - ../src:/app/src:ro
+      - ../experiments:/app/experiments
+      - ./results:/app/experiments/results
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: python experiments/compare_generators.py
+
+# Made with Bob

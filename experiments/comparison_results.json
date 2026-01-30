@@ -1,0 +1,1267 @@
+{
+  "original_generator": {
+    "random_split": {
+      "roc_auc": 0.599,
+      "f1_score": 0.4222222222222222,
+      "classification_report": {
+        "0": {
+          "precision": 0.6125,
+          "recall": 0.7,
+          "f1-score": 0.6533333333333333,
+          "support": 140.0
+        },
+        "1": {
+          "precision": 0.475,
+          "recall": 0.38,
+          "f1-score": 0.4222222222222222,
+          "support": 100.0
+        },
+        "accuracy": 0.5666666666666667,
+        "macro avg": {
+          "precision": 0.54375,
+          "recall": 0.54,
+          "f1-score": 0.5377777777777778,
+          "support": 240.0
+        },
+        "weighted avg": {
+          "precision": 0.5552083333333333,
+          "recall": 0.5666666666666667,
+          "f1-score": 0.5570370370370371,
+          "support": 240.0
+        }
+      }
+    },
+    "temporal_validation": {
+      "strategy": "expanding",
+      "n_splits": 2,
+      "results_by_split": [
+        {
+          "split": 1,
+          "train_periods": [
+            "2024-01-01 00:00:00"
+          ],
+          "test_period": "2024-01-31 00:00:00",
+          "train_size": 400,
+          "test_size": 400,
+          "roc_auc": 0.5858000203438104,
+          "f1_score": 0.3384615384615385,
+          "precision": 0.5116279069767442,
+          "recall": 0.25287356321839083
+        },
+        {
+          "split": 2,
+          "train_periods": [
+            "2024-01-01 00:00:00",
+            "2024-01-31 00:00:00"
+          ],
+          "test_period": "2024-03-01 00:00:00",
+          "train_size": 800,
+          "test_size": 400,
+          "roc_auc": 0.6553965183752417,
+          "f1_score": 0.43795620437956206,
+          "precision": 0.5504587155963303,
+          "recall": 0.36363636363636365
+        }
+      ],
+      "mean_metrics": {
+        "roc_auc": 0.620598269359526,
+        "f1_score": 0.38820887142055027,
+        "precision": 0.5310433112865373,
+        "recall": 0.30825496342737724
+      },
+      "std_metrics": {
+        "roc_auc": 0.034798249015715654,
+        "f1_score": 0.04974733295901179,
+        "precision": 0.01941540430979305,
+        "recall": 0.05538140020898641
+      }
+    },
+    "drift_analysis": {
+      "timestamp": "2026-01-20T19:33:02.301474",
+      "reference_size": 400,
+      "current_size": 400,
+      "covariate_shift": {
+        "Age": {
+          "type": "numeric",
+          "psi": 0.1244,
+          "ks_statistic": 0.08,
+          "ks_pvalue": 0.1546,
+          "wasserstein_distance": 0.0279,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 35.76,
+          "mean_current": 37.29,
+          "std_reference": 9.28,
+          "std_current": 8.44
+        },
+        "DailyRate": {
+          "type": "numeric",
+          "psi": 0.0291,
+          "ks_statistic": 0.0425,
+          "ks_pvalue": 0.8635,
+          "wasserstein_distance": 0.0163,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 792.16,
+          "mean_current": 810.95,
+          "std_reference": 400.81,
+          "std_current": 400.97
+        },
+        "DistanceFromHome": {
+          "type": "numeric",
+          "psi": 0.0307,
+          "ks_statistic": 0.0425,
+          "ks_pvalue": 0.8635,
+          "wasserstein_distance": 0.0211,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 14.41,
+          "mean_current": 15.0,
+          "std_reference": 8.07,
+          "std_current": 8.21
+        },
+        "JobLevel": {
+          "type": "numeric",
+          "psi": 0.0168,
+          "ks_statistic": 0.05,
+          "ks_pvalue": 0.7,
+          "wasserstein_distance": 0.0419,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 2.97,
+          "mean_current": 3.14,
+          "std_reference": 1.41,
+          "std_current": 1.41
+        },
+        "NumCompaniesWorked": {
+          "type": "numeric",
+          "psi": 0.021,
+          "ks_statistic": 0.0275,
+          "ks_pvalue": 0.9982,
+          "wasserstein_distance": 0.0136,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 4.61,
+          "mean_current": 4.51,
+          "std_reference": 2.88,
+          "std_current": 2.84
+        },
+        "PercentSalaryHike": {
+          "type": "numeric",
+          "psi": 0.0097,
+          "ks_statistic": 0.0225,
+          "ks_pvalue": 1.0,
+          "wasserstein_distance": 0.0138,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 2.02,
+          "mean_current": 2.01,
+          "std_reference": 1.4,
+          "std_current": 1.43
+        },
+        "StandardHours": {
+          "type": "numeric",
+          "psi": 0.0,
+          "ks_statistic": 0.0,
+          "ks_pvalue": 1.0,
+          "wasserstein_distance": 0,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 80.0,
+          "mean_current": 80.0,
+          "std_reference": 0.0,
+          "std_current": 0.0
+        },
+        "StockOptionLevel": {
+          "type": "numeric",
+          "psi": 0.0067,
+          "ks_statistic": 0.03,
+          "ks_pvalue": 0.9939,
+          "wasserstein_distance": 0.0275,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 1.47,
+          "mean_current": 1.55,
+          "std_reference": 1.12,
+          "std_current": 1.12
+        },
+        "TotalWorkingYears": {
+          "type": "numeric",
+          "psi": 0.0577,
+          "ks_statistic": 0.05,
+          "ks_pvalue": 0.7,
+          "wasserstein_distance": 0.0149,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 11.36,
+          "mean_current": 11.81,
+          "std_reference": 7.61,
+          "std_current": 7.95
+        },
+        "TrainingTimesLastYear": {
+          "type": "numeric",
+          "psi": 0.0114,
+          "ks_statistic": 0.045,
+          "ks_pvalue": 0.8134,
+          "wasserstein_distance": 0.0229,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 3.06,
+          "mean_current": 3.2,
+          "std_reference": 1.96,
+          "std_current": 2.0
+        },
+        "YearsAtCompany": {
+          "type": "numeric",
+          "psi": 0.0493,
+          "ks_statistic": 0.07,
+          "ks_pvalue": 0.2812,
+          "wasserstein_distance": 0.0153,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 6.8,
+          "mean_current": 7.15,
+          "std_reference": 5.17,
+          "std_current": 5.29
+        },
+        "EmployeeCount": {
+          "type": "numeric",
+          "psi": 0.0,
+          "ks_statistic": 0.0,
+          "ks_pvalue": 1.0,
+          "wasserstein_distance": 0,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 1.0,
+          "mean_current": 1.0,
+          "std_reference": 0.0,
+          "std_current": 0.0
+        },
+        "EmployeeNumber": {
+          "type": "numeric",
+          "psi": 17.5044,
+          "ks_statistic": 1.0,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 2.005,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 200.5,
+          "mean_current": 1000.5,
+          "std_reference": 115.61,
+          "std_current": 115.61
+        },
+        "Batch_ID": {
+          "type": "numeric",
+          "psi": 19.807,
+          "ks_statistic": 1.0,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 1.0,
+          "mean_current": 3.0,
+          "std_reference": 0.0,
+          "std_current": 0.0
+        },
+        "MonthlyIncome": {
+          "type": "numeric",
+          "psi": 0.1013,
+          "ks_statistic": 0.07,
+          "ks_pvalue": 0.2812,
+          "wasserstein_distance": 0.0317,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 5644.64,
+          "mean_current": 5200.55,
+          "std_reference": 3255.7,
+          "std_current": 3092.86
+        },
+        "Education": {
+          "type": "categorical",
+          "max_proportion_change": 0.0475,
+          "reference_distribution": {
+            "Doctor": 0.2275,
+            "College": 0.21,
+            "Below College": 0.2025,
+            "Master": 0.1925,
+            "Bachelor": 0.1675
+          },
+          "current_distribution": {
+            "Doctor": 0.2375,
+            "Below College": 0.215,
+            "Bachelor": 0.195,
+            "Master": 0.19,
+            "College": 0.1625
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "EnvironmentSatisfaction": {
+          "type": "categorical",
+          "max_proportion_change": 0.0425,
+          "reference_distribution": {
+            "High": 0.2575,
+            "Low": 0.25,
+            "Medium": 0.25,
+            "Very High": 0.2425
+          },
+          "current_distribution": {
+            "Medium": 0.2925,
+            "Very High": 0.255,
+            "High": 0.23,
+            "Low": 0.2225
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "JobInvolvement": {
+          "type": "categorical",
+          "max_proportion_change": 0.0475,
+          "reference_distribution": {
+            "High": 0.2525,
+            "Medium": 0.2525,
+            "Low": 0.2525,
+            "Very High": 0.2425
+          },
+          "current_distribution": {
+            "Low": 0.2675,
+            "Very High": 0.265,
+            "High": 0.2625,
+            "Medium": 0.205
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "JobSatisfaction": {
+          "type": "categorical",
+          "max_proportion_change": 0.0175,
+          "reference_distribution": {
+            "Very High": 0.26,
+            "Low": 0.25,
+            "High": 0.25,
+            "Medium": 0.24
+          },
+          "current_distribution": {
+            "Very High": 0.2675,
+            "High": 0.255,
+            "Low": 0.255,
+            "Medium": 0.2225
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "PerformanceRating": {
+          "type": "categorical",
+          "max_proportion_change": 0.04,
+          "reference_distribution": {
+            "Excellent": 0.755,
+            "Outstanding": 0.145,
+            "Good": 0.07,
+            "Low": 0.03
+          },
+          "current_distribution": {
+            "Excellent": 0.755,
+            "Outstanding": 0.1125,
+            "Low": 0.07,
+            "Good": 0.0625
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "RelationshipSatisfaction": {
+          "type": "categorical",
+          "max_proportion_change": 0.0375,
+          "reference_distribution": {
+            "Medium": 0.265,
+            "High": 0.2575,
+            "Low": 0.2475,
+            "Very High": 0.23
+          },
+          "current_distribution": {
+            "Low": 0.285,
+            "Medium": 0.2625,
+            "High": 0.2275,
+            "Very High": 0.225
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "WorkLifeBalance": {
+          "type": "categorical",
+          "max_proportion_change": 0.065,
+          "reference_distribution": {
+            "Better": 0.29,
+            "Good": 0.275,
+            "Bad": 0.2275,
+            "Best": 0.2075
+          },
+          "current_distribution": {
+            "Bad": 0.2875,
+            "Good": 0.2475,
+            "Best": 0.24,
+            "Better": 0.225
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "Over18": {
+          "type": "categorical",
+          "max_proportion_change": 0.0,
+          "reference_distribution": {
+            "Y": 1.0
+          },
+          "current_distribution": {
+            "Y": 1.0
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "BusinessTravel": {
+          "type": "categorical",
+          "max_proportion_change": 0.01,
+          "reference_distribution": {
+            "Travel_Rarely": 0.3575,
+            "Travel_Frequently": 0.34,
+            "Non-Travel": 0.3025
+          },
+          "current_distribution": {
+            "Travel_Rarely": 0.3625,
+            "Travel_Frequently": 0.33,
+            "Non-Travel": 0.3075
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "Department": {
+          "type": "categorical",
+          "max_proportion_change": 0.02,
+          "reference_distribution": {
+            "Human Resources": 0.35,
+            "Sales": 0.3425,
+            "Research & Development": 0.3075
+          },
+          "current_distribution": {
+            "Sales": 0.3575,
+            "Human Resources": 0.33,
+            "Research & Development": 0.3125
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "EducationField": {
+          "type": "categorical",
+          "max_proportion_change": 0.0625,
+          "reference_distribution": {
+            "Medical": 0.2225,
+            "Other": 0.1725,
+            "Life Sciences": 0.17,
+            "Marketing": 0.1575,
+            "Technical Degree": 0.15,
+            "Human Resources": 0.1275
+          },
+          "current_distribution": {
+            "Human Resources": 0.19,
+            "Other": 0.1725,
+            "Medical": 0.17,
+            "Marketing": 0.1625,
+            "Life Sciences": 0.1525,
+            "Technical Degree": 0.1525
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "Gender": {
+          "type": "categorical",
+          "max_proportion_change": 0.065,
+          "reference_distribution": {
+            "Male": 0.5325,
+            "Female": 0.4675
+          },
+          "current_distribution": {
+            "Female": 0.5325,
+            "Male": 0.4675
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "JobRole": {
+          "type": "categorical",
+          "max_proportion_change": 0.0575,
+          "reference_distribution": {
+            "Research Director": 0.1425,
+            "Laboratory Technician": 0.135,
+            "Healthcare Representative": 0.1225,
+            "Research Scientist": 0.1175,
+            "Sales Representative": 0.11,
+            "Manufacturing Director": 0.11,
+            "Sales Executive": 0.095,
+            "Human Resources": 0.095,
+            "Manager": 0.0725
+          },
+          "current_distribution": {
+            "Laboratory Technician": 0.1475,
+            "Manager": 0.13,
+            "Sales Representative": 0.1225,
+            "Research Scientist": 0.1125,
+            "Sales Executive": 0.11,
+            "Human Resources": 0.1025,
+            "Research Director": 0.0975,
+            "Healthcare Representative": 0.09,
+            "Manufacturing Director": 0.0875
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "MaritalStatus": {
+          "type": "categorical",
+          "max_proportion_change": 0.03,
+          "reference_distribution": {
+            "Single": 0.3725,
+            "Divorced": 0.32,
+            "Married": 0.3075
+          },
+          "current_distribution": {
+            "Single": 0.3525,
+            "Married": 0.3375,
+            "Divorced": 0.31
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "OverTime": {
+          "type": "categorical",
+          "max_proportion_change": 0.05,
+          "reference_distribution": {
+            "Yes": 0.5325,
+            "No": 0.4675
+          },
+          "current_distribution": {
+            "No": 0.5175,
+            "Yes": 0.4825
+          },
+          "severity": "LOW",
+          "alert": false
+        }
+      },
+      "concept_drift": {},
+      "summary": {
+        "total_features_monitored": 30,
+        "covariate_alerts": 2,
+        "concept_drift_detected": false,
+        "overall_status": "WARNING"
+      }
+    },
+    "realism": {
+      "employee_continuity": {
+        "unique_employees": 1200,
+        "total_records": 1200,
+        "continuity_score": 0,
+        "interpretation": "LOW"
+      },
+      "attrition_stability": {
+        "mean": 0.41583333333333333,
+        "std": 0.01773649721149396,
+        "cv": 0.0426528991057971,
+        "interpretation": "STABLE"
+      },
+      "age_distribution": {
+        "mean": 36.3975,
+        "std": 8.96510669382652,
+        "min": "3",
+        "max": "66",
+        "deviation_from_real": 0.0142539334537013,
+        "interpretation": "REALISTIC"
+      }
+    }
+  },
+  "temporal_generator": {
+    "random_split": {
+      "roc_auc": 0.689067220523455,
+      "f1_score": 0.5278667520819987,
+      "classification_report": {
+        "0": {
+          "precision": 0.7809278350515464,
+          "recall": 0.6534867002156722,
+          "f1-score": 0.711545988258317,
+          "support": 1391.0
+        },
+        "1": {
+          "precision": 0.4608501118568233,
+          "recall": 0.6176911544227887,
+          "f1-score": 0.5278667520819987,
+          "support": 667.0
+        },
+        "accuracy": 0.641885325558795,
+        "macro avg": {
+          "precision": 0.6208889734541848,
+          "recall": 0.6355889273192304,
+          "f1-score": 0.619706370170158,
+          "support": 2058.0
+        },
+        "weighted avg": {
+          "precision": 0.6771903028013616,
+          "recall": 0.6418853255587951,
+          "f1-score": 0.6520153514606474,
+          "support": 2058.0
+        }
+      }
+    },
+    "temporal_validation": {
+      "strategy": "expanding",
+      "n_splits": 4,
+      "results_by_split": [
+        {
+          "split": 1,
+          "train_periods": [
+            "2024-01-01 00:00:00"
+          ],
+          "test_period": "2024-01-31 00:00:00",
+          "train_size": 1470,
+          "test_size": 1470,
+          "roc_auc": 0.6592787887558337,
+          "f1_score": 0.04932735426008968,
+          "precision": 0.4583333333333333,
+          "recall": 0.026066350710900472
+        },
+        {
+          "split": 2,
+          "train_periods": [
+            "2024-01-01 00:00:00",
+            "2024-01-31 00:00:00"
+          ],
+          "test_period": "2024-03-01 00:00:00",
+          "train_size": 2940,
+          "test_size": 1470,
+          "roc_auc": 0.6687364411455049,
+          "f1_score": 0.3989290495314592,
+          "precision": 0.4901315789473684,
+          "recall": 0.3363431151241535
+        },
+        {
+          "split": 3,
+          "train_periods": [
+            "2024-01-01 00:00:00",
+            "2024-01-31 00:00:00",
+            "2024-03-01 00:00:00"
+          ],
+          "test_period": "2024-03-31 00:00:00",
+          "train_size": 4410,
+          "test_size": 1470,
+          "roc_auc": 0.6628927835051546,
+          "f1_score": 0.4480171489817792,
+          "precision": 0.48267898383371827,
+          "recall": 0.418
+        },
+        {
+          "split": 4,
+          "train_periods": [
+            "2024-01-01 00:00:00",
+            "2024-01-31 00:00:00",
+            "2024-03-01 00:00:00",
+            "2024-03-31 00:00:00"
+          ],
+          "test_period": "2024-04-30 00:00:00",
+          "train_size": 5880,
+          "test_size": 1470,
+          "roc_auc": 0.6783590622648701,
+          "f1_score": 0.5447154471544715,
+          "precision": 0.49337260677466865,
+          "recall": 0.6079854809437386
+        }
+      ],
+      "mean_metrics": {
+        "roc_auc": 0.6673167689178408,
+        "f1_score": 0.3602472499819499,
+        "precision": 0.4811291257222722,
+        "recall": 0.34709873669469815
+      },
+      "std_metrics": {
+        "roc_auc": 0.007213329391001226,
+        "f1_score": 0.18701573069571006,
+        "precision": 0.013720397253320103,
+        "recall": 0.2099204365402347
+      }
+    },
+    "drift_analysis": {
+      "timestamp": "2026-01-20T19:33:02.329672",
+      "reference_size": 1470,
+      "current_size": 1470,
+      "covariate_shift": {
+        "Age": {
+          "type": "numeric",
+          "psi": 0.4991,
+          "ks_statistic": 0.2714,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.1379,
+          "severity": "MEDIUM",
+          "alert": true,
+          "mean_reference": 36.92,
+          "mean_current": 31.26,
+          "std_reference": 9.14,
+          "std_current": 7.07
+        },
+        "DailyRate": {
+          "type": "numeric",
+          "psi": 0.008,
+          "ks_statistic": 0.019,
+          "ks_pvalue": 0.9526,
+          "wasserstein_distance": 0.0057,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 802.49,
+          "mean_current": 799.3,
+          "std_reference": 403.51,
+          "std_current": 404.76
+        },
+        "DistanceFromHome": {
+          "type": "numeric",
+          "psi": 0.3905,
+          "ks_statistic": 0.2912,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.1686,
+          "severity": "MEDIUM",
+          "alert": true,
+          "mean_reference": 9.19,
+          "mean_current": 13.91,
+          "std_reference": 8.11,
+          "std_current": 8.54
+        },
+        "EmployeeCount": {
+          "type": "numeric",
+          "psi": 0.0,
+          "ks_statistic": 0.0,
+          "ks_pvalue": 1.0,
+          "wasserstein_distance": 0,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 1.0,
+          "mean_current": 1.0,
+          "std_reference": 0.0,
+          "std_current": 0.0
+        },
+        "EmployeeNumber": {
+          "type": "numeric",
+          "psi": 1.9639,
+          "ks_statistic": 0.8878,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 1.6277,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 1024.87,
+          "mean_current": 4389.24,
+          "std_reference": 602.02,
+          "std_current": 1412.88
+        },
+        "HourlyRate": {
+          "type": "numeric",
+          "psi": 0.0533,
+          "ks_statistic": 0.0502,
+          "ks_pvalue": 0.8286,
+          "wasserstein_distance": 0.0195,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 65.89,
+          "mean_current": 66.66,
+          "std_reference": 20.33,
+          "std_current": 20.16
+        },
+        "JobLevel": {
+          "type": "numeric",
+          "psi": 0.2916,
+          "ks_statistic": 0.1952,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.1207,
+          "severity": "MEDIUM",
+          "alert": true,
+          "mean_reference": 2.06,
+          "mean_current": 1.58,
+          "std_reference": 1.11,
+          "std_current": 0.77
+        },
+        "MonthlyIncome": {
+          "type": "numeric",
+          "psi": 0.8215,
+          "ks_statistic": 0.2041,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.1014,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 6502.93,
+          "mean_current": 5393.04,
+          "std_reference": 4707.96,
+          "std_current": 2305.38
+        },
+        "MonthlyRate": {
+          "type": "numeric",
+          "psi": 0.0919,
+          "ks_statistic": 0.0568,
+          "ks_pvalue": 0.702,
+          "wasserstein_distance": 0.0146,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 14313.1,
+          "mean_current": 14443.07,
+          "std_reference": 7117.79,
+          "std_current": 6886.34
+        },
+        "NumCompaniesWorked": {
+          "type": "numeric",
+          "psi": 0.6409,
+          "ks_statistic": 0.1816,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.0881,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 2.69,
+          "mean_current": 2.07,
+          "std_reference": 2.5,
+          "std_current": 1.59
+        },
+        "PercentSalaryHike": {
+          "type": "numeric",
+          "psi": 0.4659,
+          "ks_statistic": 0.1381,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.059,
+          "severity": "MEDIUM",
+          "alert": true,
+          "mean_reference": 15.21,
+          "mean_current": 14.98,
+          "std_reference": 3.66,
+          "std_current": 2.69
+        },
+        "StandardHours": {
+          "type": "numeric",
+          "psi": 0.0,
+          "ks_statistic": 0.0,
+          "ks_pvalue": 1.0,
+          "wasserstein_distance": 0,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 80.0,
+          "mean_current": 80.0,
+          "std_reference": 0.0,
+          "std_current": 0.0
+        },
+        "StockOptionLevel": {
+          "type": "numeric",
+          "psi": 0.3497,
+          "ks_statistic": 0.1558,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.0989,
+          "severity": "MEDIUM",
+          "alert": true,
+          "mean_reference": 0.79,
+          "mean_current": 0.99,
+          "std_reference": 0.85,
+          "std_current": 0.83
+        },
+        "TotalWorkingYears": {
+          "type": "numeric",
+          "psi": 0.8485,
+          "ks_statistic": 0.3762,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.1378,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 11.28,
+          "mean_current": 5.77,
+          "std_reference": 7.78,
+          "std_current": 5.2
+        },
+        "TrainingTimesLastYear": {
+          "type": "numeric",
+          "psi": 0.8358,
+          "ks_statistic": 0.2701,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.109,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 2.8,
+          "mean_current": 2.15,
+          "std_reference": 1.29,
+          "std_current": 1.43
+        },
+        "YearsAtCompany": {
+          "type": "numeric",
+          "psi": 1.9009,
+          "ks_statistic": 0.8592,
+          "ks_pvalue": 0.0,
+          "wasserstein_distance": 0.1434,
+          "severity": "HIGH",
+          "alert": true,
+          "mean_reference": 7.01,
+          "mean_current": 1.27,
+          "std_reference": 6.13,
+          "std_current": 3.36
+        },
+        "YearsInCurrentRole": {
+          "type": "numeric",
+          "psi": 0.0541,
+          "ks_statistic": 0.0761,
+          "ks_pvalue": 0.3379,
+          "wasserstein_distance": 0.032,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 4.23,
+          "mean_current": 4.81,
+          "std_reference": 3.62,
+          "std_current": 3.85
+        },
+        "YearsSinceLastPromotion": {
+          "type": "numeric",
+          "psi": 0.0561,
+          "ks_statistic": 0.074,
+          "ks_pvalue": 0.3711,
+          "wasserstein_distance": 0.0311,
+          "severity": "LOW",
+          "alert": false,
+          "mean_reference": 2.19,
+          "mean_current": 2.61,
+          "std_reference": 3.22,
+          "std_current": 3.4
+        },
+        "YearsWithCurrManager": {
+          "type": "numeric",
+          "psi": 0.1922,
+          "ks_statistic": 0.1249,
+          "ks_pvalue": 0.0178,
+          "wasserstein_distance": 0.0509,
+          "severity": "MEDIUM",
+          "alert": true,
+          "mean_reference": 4.12,
+          "mean_current": 4.85,
+          "std_reference": 3.57,
+          "std_current": 3.44
+        },
+        "BusinessTravel": {
+          "type": "categorical",
+          "max_proportion_change": 0.3408,
+          "reference_distribution": {
+            "Travel_Rarely": 0.7095238095238096,
+            "Travel_Frequently": 0.18843537414965986,
+            "Non-Travel": 0.10204081632653061
+          },
+          "current_distribution": {
+            "Travel_Rarely": 0.3687074829931973,
+            "Non-Travel": 0.31768707482993197,
+            "Travel_Frequently": 0.31360544217687075
+          },
+          "severity": "HIGH",
+          "alert": true
+        },
+        "Department": {
+          "type": "categorical",
+          "max_proportion_change": 0.2626,
+          "reference_distribution": {
+            "Research & Development": 0.6537414965986394,
+            "Sales": 0.3034013605442177,
+            "Human Resources": 0.04285714285714286
+          },
+          "current_distribution": {
+            "Research & Development": 0.391156462585034,
+            "Sales": 0.3108843537414966,
+            "Human Resources": 0.2979591836734694
+          },
+          "severity": "MEDIUM",
+          "alert": true
+        },
+        "Education": {
+          "type": "categorical",
+          "max_proportion_change": 0.3435,
+          "reference_distribution": {
+            "3": 0.3891156462585034,
+            "4": 0.2707482993197279,
+            "2": 0.19183673469387755,
+            "1": 0.11564625850340136,
+            "5": 0.0326530612244898
+          },
+          "current_distribution": {
+            "Master": 0.18843537414965986,
+            "Bachelor": 0.1816326530612245,
+            "Below College": 0.18027210884353742,
+            "College": 0.17006802721088435,
+            "Doctor": 0.1673469387755102,
+            "3": 0.04557823129251701,
+            "4": 0.023809523809523808,
+            "2": 0.022448979591836733,
+            "1": 0.014965986394557823,
+            "5": 0.005442176870748299
+          },
+          "severity": "HIGH",
+          "alert": true
+        },
+        "EducationField": {
+          "type": "categorical",
+          "max_proportion_change": 0.2109,
+          "reference_distribution": {
+            "Life Sciences": 0.4122448979591837,
+            "Medical": 0.31564625850340133,
+            "Marketing": 0.10816326530612246,
+            "Technical Degree": 0.08979591836734693,
+            "Other": 0.055782312925170066,
+            "Human Resources": 0.018367346938775512
+          },
+          "current_distribution": {
+            "Life Sciences": 0.20136054421768707,
+            "Medical": 0.17891156462585034,
+            "Marketing": 0.17414965986394557,
+            "Technical Degree": 0.15714285714285714,
+            "Other": 0.145578231292517,
+            "Human Resources": 0.14285714285714285
+          },
+          "severity": "MEDIUM",
+          "alert": true
+        },
+        "EnvironmentSatisfaction": {
+          "type": "categorical",
+          "max_proportion_change": 0.2769,
+          "reference_distribution": {
+            "3": 0.3081632653061224,
+            "4": 0.3034013605442177,
+            "2": 0.19523809523809524,
+            "1": 0.19319727891156463
+          },
+          "current_distribution": {
+            "Low": 0.23333333333333334,
+            "Medium": 0.23061224489795917,
+            "Very High": 0.21564625850340136,
+            "High": 0.20816326530612245,
+            "4": 0.036734693877551024,
+            "3": 0.031292517006802724,
+            "2": 0.02857142857142857,
+            "1": 0.015646258503401362
+          },
+          "severity": "MEDIUM",
+          "alert": true
+        },
+        "Gender": {
+          "type": "categorical",
+          "max_proportion_change": 0.0946,
+          "reference_distribution": {
+            "Male": 0.6,
+            "Female": 0.4
+          },
+          "current_distribution": {
+            "Male": 0.5054421768707483,
+            "Female": 0.49455782312925173
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "JobInvolvement": {
+          "type": "categorical",
+          "max_proportion_change": 0.5252,
+          "reference_distribution": {
+            "3": 0.5904761904761905,
+            "2": 0.25510204081632654,
+            "4": 0.09795918367346938,
+            "1": 0.05646258503401361
+          },
+          "current_distribution": {
+            "Low": 0.22857142857142856,
+            "Very High": 0.22789115646258504,
+            "High": 0.22380952380952382,
+            "Medium": 0.20748299319727892,
+            "3": 0.0653061224489796,
+            "2": 0.03469387755102041,
+            "4": 0.008843537414965987,
+            "1": 0.003401360544217687
+          },
+          "severity": "HIGH",
+          "alert": true
+        },
+        "JobRole": {
+          "type": "categorical",
+          "max_proportion_change": 0.0946,
+          "reference_distribution": {
+            "Sales Executive": 0.2217687074829932,
+            "Research Scientist": 0.19863945578231293,
+            "Laboratory Technician": 0.1761904761904762,
+            "Manufacturing Director": 0.09863945578231292,
+            "Healthcare Representative": 0.0891156462585034,
+            "Manager": 0.06938775510204082,
+            "Sales Representative": 0.05646258503401361,
+            "Research Director": 0.05442176870748299,
+            "Human Resources": 0.03537414965986395
+          },
+          "current_distribution": {
+            "Sales Executive": 0.13197278911564625,
+            "Manufacturing Director": 0.11632653061224489,
+            "Research Director": 0.11224489795918367,
+            "Healthcare Representative": 0.10884353741496598,
+            "Laboratory Technician": 0.10816326530612246,
+            "Manager": 0.10816326530612246,
+            "Human Resources": 0.1054421768707483,
+            "Sales Representative": 0.10476190476190476,
+            "Research Scientist": 0.10408163265306122
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "JobSatisfaction": {
+          "type": "categorical",
+          "max_proportion_change": 0.2769,
+          "reference_distribution": {
+            "4": 0.3122448979591837,
+            "3": 0.3006802721088435,
+            "1": 0.19659863945578232,
+            "2": 0.19047619047619047
+          },
+          "current_distribution": {
+            "Medium": 0.24625850340136055,
+            "High": 0.23061224489795917,
+            "Very High": 0.22517006802721087,
+            "Low": 0.18571428571428572,
+            "4": 0.03537414965986395,
+            "3": 0.034013605442176874,
+            "2": 0.02312925170068027,
+            "1": 0.019727891156462583
+          },
+          "severity": "MEDIUM",
+          "alert": true
+        },
+        "MaritalStatus": {
+          "type": "categorical",
+          "max_proportion_change": 0.0932,
+          "reference_distribution": {
+            "Married": 0.45782312925170066,
+            "Single": 0.3197278911564626,
+            "Divorced": 0.22244897959183674
+          },
+          "current_distribution": {
+            "Married": 0.36462585034013606,
+            "Single": 0.3380952380952381,
+            "Divorced": 0.2972789115646258
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "Over18": {
+          "type": "categorical",
+          "max_proportion_change": 0.0,
+          "reference_distribution": {
+            "Y": 1.0
+          },
+          "current_distribution": {
+            "Y": 1.0
+          },
+          "severity": "LOW",
+          "alert": false
+        },
+        "OverTime": {
+          "type": "categorical",
+          "max_proportion_change": 0.183,
+          "reference_distribution": {
+            "No": 0.7170068027210884,
+            "Yes": 0.2829931972789116
+          },
+          "current_distribution": {
+            "No": 0.5340136054421769,
+            "Yes": 0.46598639455782315
+          },
+          "severity": "MEDIUM",
+          "alert": true
+        },
+        "PerformanceRating": {
+          "type": "categorical",
+          "max_proportion_change": 0.7497,
+          "reference_distribution": {
+            "3": 0.8462585034013606,
+            "4": 0.15374149659863945
+          },
+          "current_distribution": {
+            "Good": 0.22857142857142856,
+            "Low": 0.22312925170068026,
+            "Excellent": 0.22244897959183674,
+            "Outstanding": 0.21360544217687075,
+            "3": 0.09659863945578231,
+            "4": 0.015646258503401362
+          },
+          "severity": "HIGH",
+          "alert": true
+        },
+        "RelationshipSatisfaction": {
+          "type": "categorical",
+          "max_proportion_change": 0.2782,
+          "reference_distribution": {
+            "3": 0.3122448979591837,
+            "4": 0.2938775510204082,
+            "2": 0.20612244897959184,
+            "1": 0.18775510204081633
+          },
+          "current_distribution": {
+            "Medium": 0.23673469387755103,
+            "Very High": 0.22380952380952382,
+            "Low": 0.21700680272108844,
+            "High": 0.21020408163265306,
+            "3": 0.034013605442176874,
+            "2": 0.029931972789115645,
+            "4": 0.026530612244897958,
+            "1": 0.021768707482993196
+          },
+          "severity": "MEDIUM",
+          "alert": true
+        },
+        "WorkLifeBalance": {
+          "type": "categorical",
+          "max_proportion_change": 0.5415,
+          "reference_distribution": {
+            "3": 0.6074829931972789,
+            "2": 0.23401360544217686,
+            "4": 0.10408163265306122,
+            "1": 0.05442176870748299
+          },
+          "current_distribution": {
+            "Better": 0.22585034013605443,
+            "Best": 0.22585034013605443,
+            "Bad": 0.2217687074829932,
+            "Good": 0.21428571428571427,
+            "3": 0.06598639455782312,
+            "2": 0.02857142857142857,
+            "4": 0.01292517006802721,
+            "1": 0.004761904761904762
+          },
+          "severity": "HIGH",
+          "alert": true
+        }
+      },
+      "concept_drift": {},
+      "summary": {
+        "total_features_monitored": 34,
+        "covariate_alerts": 23,
+        "concept_drift_detected": false,
+        "overall_status": "CRITICAL"
+      }
+    },
+    "realism": {
+      "employee_continuity": {
+        "unique_employees": 5112,
+        "total_records": 10290,
+        "continuity_score": 0.5870748299319728,
+        "interpretation": "LOW"
+      },
+      "attrition_stability": {
+        "mean": 0.324198250728863,
+        "std": 0.08549341403816449,
+        "cv": 0.26370720337311526,
+        "interpretation": "VOLATILE"
+      },
+      "age_distribution": {
+        "mean": 33.33663751214772,
+        "std": 8.400196969826402,
+        "min": "18",
+        "max": "60",
+        "deviation_from_real": 0.09715064772362385,
+        "interpretation": "REALISTIC"
+      }
+    }
+  },
+  "comparison": {
+    "winner": "TEMPORAL",
+    "scores": {
+      "original": 3,
+      "temporal": 4
+    }
+  }
+}
