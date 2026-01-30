@@ -1,4 +1,4 @@
-# 🧠 Agentic MLOps: Employee Attrition Prediction with Temporal Validation
+# 🧠 MLOps: Employee Attrition Prediction with Temporal Validation
 
 ![Status](https://img.shields.io/badge/Status-Production--Ready-success) 
 ![Architecture](https://img.shields.io/badge/Architecture-Podman--Compose-blue)
