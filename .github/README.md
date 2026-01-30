@@ -1,250 +1,382 @@
-# 🔄 CI/CD Configuration
+# 🧠 MLOps: Employee Attrition Prediction with Temporal Validation
 
-Configuración de integración y despliegue continuo para Agentic MLOps.
+![Status](https://img.shields.io/badge/Status-Production--Ready-success) 
+![Architecture](https://img.shields.io/badge/Architecture-Podman--Compose-blue)
+![Engines](https://img.shields.io/badge/Engines-Prefect%20|%20MLflow%20|%20FastAPI-orange)
+![ML](https://img.shields.io/badge/ML-Temporal%20Validation%20%7C%20Drift%20Detection-green)
 
-## 📋 Pipeline Overview
+## 🚀 Project Overview
 
-El pipeline de CI/CD se ejecuta automáticamente en cada push o pull request a las ramas `main` y `develop`.
-
-### Stages
-
-```mermaid
-graph LR
-    A[Push/PR] --> B[Test]
-    A --> C[Lint]
-    A --> D[Security]
-    B --> E[Build Docker]
-    C --> E
-    E --> F[Integration Test]
-    F --> G[Notify]
-```
-
-## 🧪 Test Stage
-
-**Matriz de Python:** 3.9, 3.10, 3.11
-
-**Acciones:**
-- ✅ Checkout código
-- ✅ Setup Python
-- ✅ Cache pip packages
-- ✅ Install dependencies
-- ✅ Run pytest con coverage
-- ✅ Upload coverage a Codecov
-
-**Comando:**
-```bash
-pytest tests/ -v --cov=src --cov-report=xml --cov-report=term
-```
-
-## 🎨 Lint Stage
-
-**Herramientas:**
-- **flake8**: Linting de código
-- **black**: Formateo de código
-- **isort**: Ordenamiento de imports
-- **mypy**: Type checking (opcional)
-
-**Comandos:**
-```bash
-flake8 src/ --count --select=E9,F63,F7,F82 --show-source --statistics
-black --check src/
-isort --check-only src/
-```
-
-## 🔒 Security Stage
-
-**Herramientas:**
-- **bandit**: Security scan de código Python
-- **safety**: Check de vulnerabilidades en dependencias
-
-**Comandos:**
-```bash
-bandit -r src/ -f json -o bandit-report.json
-safety check --json
-```
-
-## 🐳 Build Docker Stage
-
-**Imágenes construidas:**
-- `mlops-serving:test`
-- `mlops-frontend:test`
-
-**Validación:**
-- Docker Buildx setup
-- Build de todas las imágenes
-- Validación de docker-compose.yml
-
-## 🔗 Integration Test Stage
-
-**Tests ejecutados:**
-- Pipeline temporal completo
-- Generación de datos sintéticos
-- Verificación de artifacts
-
-**Comando:**
-```bash
-python src/train_pipeline_temporal.py \
-    --data WA_Fn-UseC_-HR-Employee-Attrition.csv \
-    --temporal-gen \
-    --n-months 2 \
-    --scenario baseline
-```
-
-## 📢 Notify Stage
-
-**Información reportada:**
-- Status de cada stage
-- Logs de errores
-- Coverage metrics
-
-## 🛠 Setup Local
-
-### Pre-commit Hooks
-
-```bash
-# Instalar pre-commit
-pip install pre-commit
-
-# Setup hooks
-pre-commit install
-
-# Run manualmente
-pre-commit run --all-files
-```
-
-### Ejecutar CI localmente
-
-```bash
-# Tests
-pytest tests/ -v --cov=src
-
-# Linting
-flake8 src/
-black --check src/
-isort --check-only src/
-
-# Security
-bandit -r src/
-safety check
-
-# Build Docker
-docker-compose build
-```
-
-## 📊 Badges
-
-Agregar a README.md:
-
-```markdown
-![CI/CD](https://github.com/username/repo/workflows/CI%2FCD%20Pipeline/badge.svg)
-![Coverage](https://codecov.io/gh/username/repo/branch/main/graph/badge.svg)
-![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11-blue)
-```
-
-## 🔧 Configuración
-
-### GitHub Secrets
-
-Configurar en Settings > Secrets:
-
-```
-CODECOV_TOKEN=<token>
-DOCKER_USERNAME=<username>
-DOCKER_PASSWORD=<password>
-```
-
-### Branch Protection
-
-Configurar en Settings > Branches:
-
-- ✅ Require pull request reviews
-- ✅ Require status checks to pass
-- ✅ Require branches to be up to date
-- ✅ Include administrators
-
-### Required Checks
-
-- `test (3.9)`
-- `test (3.10)`
-- `test (3.11)`
-- `lint`
-- `security`
-- `build-docker`
-- `integration-test`
-
-## 📈 Métricas
-
-### Coverage Target
-- **Mínimo**: 70%
-- **Objetivo**: 80%
-- **Actual**: ~85%
-
-### Build Time
-- **Test**: ~3 min
-- **Lint**: ~1 min
-- **Security**: ~1 min
-- **Build**: ~5 min
-- **Integration**: ~2 min
-- **Total**: ~12 min
-
-## 🚀 Deployment (Futuro)
-
-### Staging
-```yaml
-deploy-staging:
-  if: github.ref == 'refs/heads/develop'
-  steps:
-    - Deploy to staging environment
-    - Run smoke tests
-    - Notify team
-```
-
-### Production
-```yaml
-deploy-production:
-  if: github.ref == 'refs/heads/main'
-  steps:
-    - Create release tag
-    - Deploy to production
-    - Run health checks
-    - Notify stakeholders
-```
-
-## 🐛 Troubleshooting
-
-### Tests fallan localmente pero pasan en CI
-- Verificar versión de Python
-- Verificar dependencias instaladas
-- Limpiar cache: `pytest --cache-clear`
-
-### Docker build falla
-- Verificar Dockerfile syntax
-- Verificar paths relativos
-- Limpiar build cache: `docker system prune`
-
-### Coverage bajo
-- Agregar más tests
-- Verificar que todos los módulos están cubiertos
-- Revisar reporte HTML: `pytest --cov-report=html`
-
-## 📚 Referencias
-
-- [GitHub Actions Docs](https://docs.github.com/en/actions)
-- [Pytest Documentation](https://docs.pytest.org/)
-- [Pre-commit Hooks](https://pre-commit.com/)
-- [Docker Best Practices](https://docs.docker.com/develop/dev-best-practices/)
-
-## 🤝 Contribuir
-
-1. Fork el repositorio
-2. Crear feature branch: `git checkout -b feature/amazing-feature`
-3. Commit cambios: `git commit -m 'Add amazing feature'`
-4. Push a branch: `git push origin feature/amazing-feature`
-5. Abrir Pull Request
-6. Esperar CI/CD checks ✅
-7. Request review
-8. Merge!
+Sistema MLOps completo para predicción de attrition de empleados con capacidades avanzadas de:
+- **Validación Temporal**: Walk-forward validation que respeta el orden cronológico
+- **Drift Detection**: Monitoreo robusto con PSI, KS-test y Wasserstein distance
+- **Generación Sintética**: Datos temporales con continuidad de cohortes
+- **Microservicios**: Arquitectura desacoplada y escalable
 
 ---
 
-*CI/CD mantiene la calidad y acelera el desarrollo*
+## 📊 Arquitectura del Sistema
+
+### Evolución: De Monolito a Microservicios
+
+```mermaid
+graph TD
+    User((User)) -->|Interacts| Streamlit[Frontend: Streamlit]
+    Streamlit -->|Triggers Tasks| Prefect[Orchestrator: Prefect]
+    Streamlit -->|Requests Prediction| Serving[Serving: FastAPI]
+    Prefect -->|Logs Experiments| MLflow[Tracking: MLflow]
+    Serving -->|Loads Best Model| MLflow
+    Prefect -->|Trains API| Serving
+    
+    subgraph "Temporal Pipeline"
+        TempGen[TemporalHRGenerator]
+        DriftMon[DriftMonitor]
+        TempVal[TemporalValidator]
+    end
+    
+    Prefect -.->|Uses| TempGen
+    Prefect -.->|Uses| DriftMon
+    Prefect -.->|Uses| TempVal
+```
+
+---
+
+## 🎯 Características Principales
+
+### 1. **Pipeline de Entrenamiento Temporal**
+```bash
+# Entrenamiento con generación temporal
+python src/train_pipeline_temporal.py \
+    --data WA_Fn-UseC_-HR-Employee-Attrition.csv \
+    --temporal-gen \
+    --n-months 6 \
+    --scenario baseline \
+    --temporal-val \
+    --n-splits 3
+```
+
+**Características:**
+- ✅ Generación de datos con continuidad temporal (70% retención)
+- ✅ Múltiples escenarios de drift (baseline, recession, tech_boom)
+- ✅ Walk-forward validation
+- ✅ Drift monitoring con PSI, KS-test, Wasserstein
+- ✅ MLflow tracking integrado
+
+### 2. **Detección Avanzada de Drift**
+
+**Métricas Implementadas:**
+- **PSI (Population Stability Index)**: Estándar en banca/RRHH
+- **KS-Test**: Cambios en distribuciones
+- **Wasserstein Distance**: Distancia entre distribuciones
+- **Concept Drift**: Cambios en P(Y|X)
+
+**Umbrales de Alerta:**
+- 0-5 alertas: NORMAL
+- 6-15 alertas: WARNING
+- 16+ alertas: CRITICAL (reentrenar)
+
+### 3. **Validación Temporal**
+
+**Walk-Forward Validation:**
+```python
+# Expanding window: entrena con datos históricos crecientes
+# Rolling window: ventana deslizante de tamaño fijo
+validator = TemporalValidator(strategy='expanding', n_splits=4)
+results = validator.validate(pipeline, X, y)
+```
+
+**Ventajas:**
+- ✅ Evita data leakage
+- ✅ Simula producción real
+- ✅ Detecta performance decay
+- ✅ Valida robustez temporal
+
+---
+
+## 🛠 Componentes del Sistema
+
+### Core ML Pipeline
+| Componente | Descripción | Líneas |
+|------------|-------------|--------|
+| `train_pipeline.py` | Pipeline original de entrenamiento | 181 |
+| `train_pipeline_temporal.py` | Pipeline con validación temporal | 465 |
+| `temporal_generator.py` | Generador con continuidad temporal | 476 |
+| `drift_monitor.py` | Sistema robusto de drift detection | 476 |
+| `temporal_validation.py` | Walk-forward validation | 390 |
+
+### Microservicios
+| Servicio | Puerto | Descripción |
+|----------|--------|-------------|
+| Frontend | 8501 | Streamlit UI |
+| Orchestrator | 4200 | Prefect workflows |
+| Tracking | 5000 | MLflow experiments |
+| Serving API | 8000 | FastAPI predictions |
+
+### Experimentos y Ejemplos
+| Directorio | Contenido |
+|------------|-----------|
+| `experiments/` | Comparación de generadores |
+| `examples/` | Scripts de uso del pipeline temporal |
+| `docs/` | Documentación técnica completa |
+
+---
+
+## ⚡ Quick Start
+
+### Opción 1: Microservicios Completos
+```bash
+# Levantar toda la infraestructura
+podman-compose up --build
+
+# Acceder a los servicios
+# Frontend: http://localhost:8501
+# Prefect: http://localhost:4200
+# MLflow: http://localhost:5000
+# API: http://localhost:8000/docs
+```
+
+### Opción 2: Pipeline Temporal Standalone
+```powershell
+# Windows (Podman)
+powershell -ExecutionPolicy Bypass -File examples\run_temporal_pipeline.ps1 -Mode temporal -Months 6
+
+# Linux/Mac
+bash examples/train_with_temporal.sh
+```
+
+### Opción 3: Python Directo
+```bash
+# Entrenamiento básico
+python src/train_pipeline.py --data WA_Fn-UseC_-HR-Employee-Attrition.csv
+
+# Con validación temporal
+python src/train_pipeline_temporal.py \
+    --data WA_Fn-UseC_-HR-Employee-Attrition.csv \
+    --temporal-gen \
+    --n-months 12 \
+    --scenario economic_recession \
+    --temporal-val \
+    --n-splits 4
+```
+
+---
+
+## 📈 Resultados y Métricas
+
+### Performance del Modelo
+```json
+{
+  "roc_auc": 0.6853,
+  "f1_score": 0.54,
+  "precision": 0.68,
+  "recall": 0.46
+}
+```
+
+### Comparación de Generadores
+| Métrica | Original | Temporal | Ganador |
+|---------|----------|----------|---------|
+| ROC-AUC (Temporal Val) | 0.6206 | **0.6673** | ✅ Temporal |
+| Data Leakage | 0.0216 | 0.0218 | ✅ Original |
+| Continuidad Empleados | 0% | **58.71%** | ✅ Temporal |
+| Alertas Drift | 2 | **23** | ✅ Temporal |
+
+**Conclusión:** El generador temporal gana en realismo y robustez (4 vs 3 puntos).
+
+---
+
+## 🎓 Escenarios de Drift Disponibles
+
+### 1. `baseline`
+- Condiciones normales de negocio
+- Attrition estable (~16%)
+- Sin cambios significativos
+
+### 2. `economic_recession`
+- Recesión económica
+- Aumentos salariales bajos
+- Mayor estrés por distancia
+- Attrition aumenta gradualmente
+
+### 3. `tech_boom`
+- Boom tecnológico
+- Aumentos salariales altos
+- Mayor competencia por talento
+- Attrition alta en roles técnicos
+
+### 4. `high_competition`
+- Alta competencia en el mercado
+- Rotación acelerada
+- Cambios en satisfacción laboral
+
+---
+
+## 📚 Documentación
+
+### Guías Principales
+- **[Análisis Crítico](docs/propuesta_analisis_critico.md)**: Evaluación técnica de la propuesta
+- **[Implementation Guide](docs/IMPLEMENTATION_GUIDE.md)**: Guía completa de implementación
+- **[Quick Start](docs/QUICK_START.md)**: Inicio rápido
+- **[Examples README](examples/README.md)**: Ejemplos de uso del pipeline temporal
+
+### Experimentos
+- **[Comparison Results](experiments/comparison_results.json)**: Resultados de comparación
+- **[Experiments README](experiments/README.md)**: Documentación de experimentos
+
+---
+
+## 🔧 Decisiones de Diseño
+
+### 1. **Prefect over Airflow**
+- Menor overhead operacional
+- Code-as-data approach
+- Retry mechanisms robustos
+
+### 2. **MLflow con SQLite**
+- Simplifica deployment inicial
+- Full UI experience
+- Roadmap: Migración a PostgreSQL
+
+### 3. **FastAPI para Serving**
+- REST API estándar
+- Documentación automática (Swagger)
+- Alto performance
+
+### 4. **Podman/Docker Compose**
+- "Works on my machine" → "Works everywhere"
+- Aislamiento de dependencias
+- Fácil escalabilidad
+
+### 5. **Validación Temporal**
+- Evita data leakage
+- Simula producción real
+- Detecta performance decay
+
+---
+
+## 🔐 Seguridad y Roadmap
+
+### Implementado ✅
+- ✅ Validación de rutas (path traversal protection)
+- ✅ Versionado de modelos
+- ✅ Data governance
+- ✅ Drift monitoring
+- ✅ Containerización
+
+### Roadmap 🚧
+- 🚧 Authentication (OAuth2/OIDC)
+- 🚧 Dynamic Scaling (Kubernetes)
+- 🚧 Automated Retraining (Drift triggers)
+- 🚧 A/B Testing framework
+- 🚧 Model explainability (SHAP)
+
+---
+
+## 🧪 Testing
+
+### Tests Unitarios (Pendiente)
+```bash
+pytest tests/ -v --cov=src
+```
+
+### Validación Manual
+```bash
+# Test de inferencia
+python test_inference.py
+
+# Test del API
+curl -X POST http://localhost:8000/predict \
+  -H "Content-Type: application/json" \
+  -d @test_request.json
+```
+
+---
+
+## 📊 Estructura del Proyecto
+
+```
+agentic_mlops/
+├── src/                          # Código fuente
+│   ├── train_pipeline.py         # Pipeline original
+│   ├── train_pipeline_temporal.py # Pipeline temporal
+│   ├── temporal_generator.py     # Generador temporal
+│   ├── drift_monitor.py          # Drift detection
+│   ├── temporal_validation.py    # Walk-forward validation
+│   └── utils.py                  # Utilidades
+├── services/                     # Microservicios
+│   ├── frontend/                 # Streamlit UI
+│   ├── orchestrator/             # Prefect
+│   ├── serving/                  # FastAPI
+│   └── tracking/                 # MLflow
+├── experiments/                  # Experimentos
+│   ├── compare_generators.py     # Comparación
+│   └── comparison_results.json   # Resultados
+├── examples/                     # Ejemplos de uso
+│   ├── run_temporal_pipeline.ps1 # Script Windows
+│   └── README.md                 # Documentación
+├── docs/                         # Documentación
+│   ├── propuesta_analisis_critico.md
+│   ├── IMPLEMENTATION_GUIDE.md
+│   └── QUICK_START.md
+├── data/                         # Datasets
+├── models/                       # Modelos entrenados
+└── docker-compose.yml            # Orquestación
+```
+
+---
+
+## 💡 Casos de Uso
+
+### 1. Testing de Robustez
+```bash
+# Validar que el modelo funciona bien con datos futuros
+python src/train_pipeline_temporal.py \
+    --data WA_Fn-UseC_-HR-Employee-Attrition.csv \
+    --temporal-gen --n-months 12 \
+    --scenario baseline --temporal-val --n-splits 4
+```
+
+### 2. Simulación de Crisis
+```bash
+# Evaluar performance bajo condiciones adversas
+python src/train_pipeline_temporal.py \
+    --data WA_Fn-UseC_-HR-Employee-Attrition.csv \
+    --temporal-gen --n-months 12 \
+    --scenario economic_recession \
+    --temporal-val --n-splits 4
+```
+
+### 3. Desarrollo sin Datos Reales
+```bash
+# Desarrollar features sin acceso a producción
+python src/train_pipeline_temporal.py \
+    --data WA_Fn-UseC_-HR-Employee-Attrition.csv \
+    --temporal-gen --n-months 6 --scenario baseline
+```
+
+---
+
+
+---
+
+## 🤝 Contribuciones
+
+Este proyecto demuestra:
+- ✅ Arquitectura de microservicios
+- ✅ MLOps best practices
+- ✅ Validación temporal robusta
+- ✅ Drift detection avanzado
+- ✅ Data governance
+- ✅ Containerización
+- ✅ Documentación completa
+
+---
+
+## 📞 Contacto
+
+**Franco Yair Benko**
+- LinkedIn: [Franco Benko](https://linkedin.com/in/franco-benko)
+- Email: franco.benko@ibm.com
+
+---
+
